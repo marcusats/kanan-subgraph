@@ -1,0 +1,70 @@
+type CompanyRegistered @entity(immutable: true) {
+  id: Bytes!
+  company: Bytes! # address
+  reputation: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CreatorRegistered @entity(immutable: true) {
+  id: Bytes!
+  creator: Bytes! # address
+  reputation: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PaymentTransferred @entity(immutable: true) {
+  id: Bytes!
+  creator: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PostInteraction @entity(immutable: true) {
+  id: Bytes!
+  postId: BigInt! # uint256
+  interactionType: Int! # uint8
+  user: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ProposalApproved @entity(immutable: true) {
+  id: Bytes!
+  proposalId: BigInt! # uint256
+  company: Bytes! # address
+  creator: Bytes! # address
+  companyReputation: BigInt! # uint256
+  creatorReputation: BigInt! # uint256
+  paymentAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ProposalRejected @entity(immutable: true) {
+  id: Bytes!
+  proposalId: BigInt! # uint256
+  creator: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ProposalSubmitted @entity(immutable: true) {
+  id: Bytes!
+  proposalId: BigInt! # uint256
+  company: Bytes! # address
+  targetCreator: Bytes! # address
+  adHash: String! # string
+  paymentOffer: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

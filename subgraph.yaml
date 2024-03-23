@@ -1,0 +1,44 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: AdContract
+    network: base-sepolia
+    source:
+      address: "0x01003B8ee5E0CFB86f816689D4D36F379D38E9e0"
+      abi: AdContract
+      startBlock: 7724239
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CompanyRegistered
+        - CreatorRegistered
+        - PaymentTransferred
+        - PostInteraction
+        - ProposalApproved
+        - ProposalRejected
+        - ProposalSubmitted
+      abis:
+        - name: AdContract
+          file: ./abis/AdContract.json
+      eventHandlers:
+        - event: CompanyRegistered(indexed address,uint256)
+          handler: handleCompanyRegistered
+        - event: CreatorRegistered(indexed address,uint256)
+          handler: handleCreatorRegistered
+        - event: PaymentTransferred(indexed address,uint256)
+          handler: handlePaymentTransferred
+        - event: PostInteraction(indexed uint256,uint8,address)
+          handler: handlePostInteraction
+        - event: ProposalApproved(indexed uint256,indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleProposalApproved
+        - event: ProposalRejected(indexed uint256,indexed address)
+          handler: handleProposalRejected
+        - event: ProposalSubmitted(indexed uint256,indexed address,address,string,uint256)
+          handler: handleProposalSubmitted
+      file: ./src/ad-contract.ts
