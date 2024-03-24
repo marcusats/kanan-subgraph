@@ -1,4 +1,4 @@
-specVersion: 1.0.0
+specVersion: 1.1.0
 indexerHints:
   prune: auto
 schema:
@@ -42,3 +42,19 @@ dataSources:
         - event: ProposalSubmitted(indexed uint256,indexed address,address,string,uint256)
           handler: handleProposalSubmitted
       file: ./src/ad-contract.ts
+templates:
+  - kind: file/ipfs
+    name: IpfsContent
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdContent
+        - Proposal
+      abis:
+        - name: AdContract
+          file: ./abis/AdContract.json
+      handler: handleAdContent
+      file: ./src/ad-contract.ts
+
