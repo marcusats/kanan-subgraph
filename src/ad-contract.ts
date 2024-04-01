@@ -182,7 +182,7 @@ export function handleProposalApproved(event: ProposalApprovedEvent): void {
     proposal.save();
   }
 
-  let postTimes = new PostTime(event.params.proposalId.toString());
+  let postTimes = new PostTime(event.params.proposalId.toString() + "-" + event.transaction.hash.concatI32(event.logIndex.toI32()).toString() );
   postTimes.post = postId;
   postTimes.save();
   let adContent = AdContent.load(proposalId);

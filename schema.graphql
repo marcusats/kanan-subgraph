@@ -105,7 +105,7 @@ type PostStat @aggregation(intervals: ["hour", "day"], source: "PostTime") {
   id: Int8!
   timestamp: Int8!
   post: Post!
-  countPosts: Int! @aggregate(fn: "count", cumulative: true)
+  countPosts: Int! @aggregate(fn: "count", cumulative: true,)
 }
 
 type User @entity {
